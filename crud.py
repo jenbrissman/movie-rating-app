@@ -30,6 +30,10 @@ def create_movie(title, overview, release_date, poster_path):
     db.session.commit()
 
     return movie
+
+def get_movies():
+    """ Returns all movies """
+    return Movie.query.all()
     
 
 def create_rating(user, movie, score):
@@ -41,6 +45,28 @@ def create_rating(user, movie, score):
     db.session.commit()
 
     return rating
+
+
+def get_movie_by_id(movie_id):
+    """ Get the movie title using the primary key: movie_id """
+    return Movie.query.get(movie_id)
+
+
+def get_users():
+    """ Returns all users """
+    return User.query.all()
+    
+    
+def get_user_by_id(user_id):
+    """ Get the user email using the primary key: user_id """
+    return User.query.get(user_id)
+
+
+def get_user_by_email(email):
+    """ Get the user by using the email """
+    
+    return User.query.filter(User.email == email).first()
+
 
 
 if __name__ == '__main__':
